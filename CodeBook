@@ -1,0 +1,49 @@
+The run_analysis.R script performs the data preparation and then followed by the 5 steps
+
+Download the dataset
+Unzip the data set
+
+Reading the train data sets, the test datasets, the feature vector and the activity labels
+x_train.txt : 7352 observations of 561 variables
+Training set.
+y_train.txt : 7352 observations of 1 variable
+Training labels.
+subject_train.txt: 7352 observations of 1 variable
+contains train data of 21/30 volunteer subjects being observed
+x_test.txt: 2947 observations of 561 variables
+Test set.
+y_test.txt:2947 observations of 1 variable
+Test lables.
+subject_test.txt: 2947 observations of 1 variable
+contains test data of 9/30 volunteer test subjects being observed
+features.txt : 561 observations of 2 variables
+List of all features
+activity_labels.txt : 6 observations of 2 variables
+Links the class labels with their activity name.
+
+Merges the training and the test sets to create one data set
+alltrain: 7352 observations of  563 variables is created by merging x_train, y_train and subject_train using the cbind function
+alltest:  2947 observations of  563 variables is created by merging x_test, y_test and subject_test using the cbind function
+alldata:  10299 observations of  563 variables is created by alltrain and all test using the rbind function
+
+Extracts only the measurements on the mean and standard deviation for each measurement
+alldata: 10299 observations 81 variables is created by extracted only the measurments on the mean and stantard deviation for each measurment by using the command grep
+
+Uses descriptive activity names to name the activities in the data set
+Entire numbers in activityID column of the alldata replaced with corresponding activity taken from second column of the activities variable using the factor function
+
+Appropriately labels the data set with descriptive variable names using the gsub command
+All Acc in column’s name replaced by Accelerometer
+All Gyro in column’s name replaced by Gyroscope
+All BodyBody in column’s name replaced by Body
+All Mag in column’s name replaced by Magnitude
+All start with character f in column’s name replaced by Frequency
+All start with character t in column’s name replaced by Time
+All mean in column’s name replaced by Mean
+All std in column’s name replaced by StandardDeviation
+All BodyBody in column’s name replaced by Body
+
+From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject
+second_dataset with 180 observations and 81 variables is created by sumarizing alldata taking the means of each variable for each activityID and each subjectID, after groupped by subjectID and activityID.
+Export second_data into tidy_data.txt file.
+
